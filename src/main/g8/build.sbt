@@ -43,3 +43,5 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion,
   "org.scalatest" %% "scalatest" % "3.0.0" % "test"
   )
+
+initialCommands := "import $organization$._"
