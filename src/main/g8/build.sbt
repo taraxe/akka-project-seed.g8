@@ -1,14 +1,14 @@
-// give the user a nice default project!
+import scalariform.formatter.preferences._
+import com.typesafe.sbt.SbtScalariform
+import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 
-name := """$name;format="normalize"$"""
+name := "$name;format="normalize"$"
 
-val akkaVersion = """$akkaVersion$"""
+organization := "$organization$"
 
-organization := """$organization$"""
+version := "$version$"
 
-version := """$version$"""
-
-scalaVersion := """$scalaVersion$"""
+scalaVersion := "2.11.8"
 
 scalacOptions ++= Seq(
   "-deprecation",
@@ -36,6 +36,8 @@ resolvers := Seq(
       Resolver.sonatypeRepo("releases"),
       DefaultMavenRepository)
 
+val akkaVersion = "2.4.11"
+
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-stream" % akkaVersion,
   "com.typesafe.akka" %% "akka-http-experimental" % akkaVersion,
@@ -45,3 +47,10 @@ libraryDependencies ++= Seq(
   )
 
 initialCommands := "import $organization$._"
+
+SbtScalariform.scalariformSettings
+
+ScalariformKeys.preferences := ScalariformKeys.preferences.value
+  .setPreference(AlignSingleLineCaseStatements, true)
+  .setPreference(DoubleIndentClassDeclaration, true)
+  .setPreference(RewriteArrowSymbols, true)
